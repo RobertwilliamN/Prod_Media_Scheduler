@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excluir Conta</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/delete.css' %}">
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="/publicacao/list">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+            </a>
+        </div>
+        <ul>
+            <li>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <a type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </a>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h1>Excluir Conta</h1>
+        <p>Tem certeza de que deseja excluir sua conta? Esta ação é irreversível.</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Excluir Conta</button>
+        </form>
+        <a href="{% url 'list-publicacoes' %}">Cancelar</a>
+    </div>
+</body>
+</html>

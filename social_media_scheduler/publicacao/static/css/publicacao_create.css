@@ -1,0 +1,299 @@
+html, body {
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111827;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: white;
+}
+
+a {
+    color: #1668FF;
+    margin: 10px;
+}
+
+.upload-input {
+    border: 2px solid #007bff; /* Borda do container */
+    border-radius: 5px; /* Cantos arredondados */
+    padding: 10px 20px; /* Espaçamento interno */
+    display: inline-block; /* Alinhamento com o texto */
+    background-color: #007bff; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    font-weight: bold; /* Texto em negrito */
+    cursor: pointer; /* Cursor de ponteiro */
+    text-align: center; /* Centralizar texto */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra suave */
+    transition: background-color 0.3s ease, border-color 0.3s ease; 
+}
+
+.upload-input:hover {
+    background-color: #0056b3; /* Cor de fundo ao passar o mouse */
+    border-color: #0056b3; 
+}
+.custom-file-upload + label {
+    font-size: 14px;
+    color: #666;
+}
+
+.form-control {
+    color: black;
+}
+
+
+nav {
+    background-color: #1F2937;
+    padding: 20px 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.nav-logo {
+    margin-left: 150px;
+}
+
+.nav-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o texto e o ícone */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 15px; /* Tamanho do texto */
+}
+
+.logout-button i {
+    font-size: 15px; /* Tamanho do ícone */
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+}
+
+.logout-button span {
+    display: inline;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+}
+
+nav ul li {
+    position: relative;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: block;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+nav ul li a:hover {
+    background-color: #0F63C1;
+    box-shadow: 0px 0px 5px #007bff;
+    text-decoration: none;
+    color: white;
+}
+
+
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    padding: 0;
+    border-radius: 10px;
+    list-style-type: none;
+    background-color: transparent;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: max-content;
+}
+
+nav ul li:hover ul {
+    display: block;
+}
+
+nav ul li ul li {
+    margin: 0;
+    margin-top: 2px;
+}
+
+nav ul li ul li a {
+    padding: 10px 16px;
+    display: block;
+    margin-top: 3px;
+    white-space: nowrap;
+    background-color: #007bff;
+}
+
+nav ul li ul li a:hover {
+    background-color: #0F63C1;
+}
+
+/* Estilo para labels */
+.container {
+    background-color: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 20px 30px 50px rgba(0, 0, 0, 1);
+    width: 500px;
+    max-width: 100%;
+    border: 2px solid #1f2937;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    justify-content: center;
+    text-align: center;
+    margin-top: 180px; 
+    margin-bottom: 100px;
+    height: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: white;
+    font-weight: bold;
+    text-align: center; /* Alinha o texto dos labels à esquerda */
+}
+
+/* Estilo para o formulário */
+.container form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Garante que os inputs ocupem a largura completa do formulário */
+}
+
+/* Estilo para inputs */
+input[type="text"],
+input[type="datetime-local"],
+textarea {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 4px;
+    border: 2px solid #ddd;
+    width: 100%;
+    box-sizing: border-box; /* Inclui padding e border no width total */
+}
+
+#id_foto_video {
+    border: none;
+}
+
+#id_rede_social, #id_status, #id_perfil {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 4px;
+    border: 2px solid #ddd;
+    width: 60%;
+    text-align: center;
+    box-sizing: border-box; /* Inclui padding e border no width total */
+
+}
+#id_status{
+    width: 60%;
+}
+#id_perfil {
+    display: grid; /* Utilizando grid para organizar os checkboxes */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajusta o número de colunas automaticamente */
+    gap: 10px; /* Espaçamento entre os checkboxes */
+    background-color: #f5f5f5; /* Fundo claro para contraste */
+    border: 1px solid #ccc; /* Borda leve */
+    border-radius: 5px; /* Canto arredondado */
+    padding: 10px; /* Espaçamento interno */
+    color: black;
+    width: 100%;
+}
+
+/* Estiliza cada item do checkbox */
+#id_perfil label {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Estiliza o checkbox e o label ao passar o mouse */
+#id_perfil label:hover {
+    background-color: #e0e0e0;
+}
+
+/* Oculta o checkbox original */
+#id_perfil input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2); /* Aumenta o tamanho do checkbox */
+    accent-color: #28a745; /* Cor do checkbox */
+}
+
+/* Estiliza o label para texto preto e centralizado */
+#id_perfil label {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Estilo para quando o checkbox estiver marcado */
+#id_perfil input[type="checkbox"]:checked + label {
+    background-color: #28a745; /* Fundo verde ao marcar */
+    color: white; /* Texto branco ao marcar */
+}
+
+/* Estilo para o botão */
+button {
+    background-color: #e73838;
+    color: white;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    margin-top: 30px;
+    padding: 12px;
+    border: 2px solid #e73838;
+    box-shadow: 0 0 10px #e73838;
+    width: 100%;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #e85353;
+    box-shadow: 0 0 10px #e73838;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    {% load static %}
+    <!-- Importando CSS -->
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
+    <link rel="icon" href="{% static 'images/icon.png'' %}" type="image/icon.png'">
+</head>
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="/publicacao/list">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+            </a>
+        </div>
+        <ul>
+            <li>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <a type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </a>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+
+        <h2>Adicionar novo usuário</h2>
+        <form  method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Cadastrar</button>
+        </form>
+        <a href="/publicacao/list">Voltar</a>
+    </div>
+</body>
+</html>
