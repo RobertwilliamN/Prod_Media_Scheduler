@@ -37,6 +37,13 @@ h1 {
    background-color: #007bff;
    font-weight: bold;
 }
+.nav-button {
+    text-align: center;
+    justify-content: center;
+    background-color: #111827;
+}
+
+
 
 .button-create:hover {
     background-color: #0F63C1;
@@ -349,3 +356,4 @@ nav ul li ul li a:hover {
     color: white;
     text-decoration: none;
 }
+
