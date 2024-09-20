@@ -30,7 +30,7 @@
     </nav>
 
     <div class="container">
-        <h1>{% if form.instance.pk %}Editar{% else %}Criar{% endif %} Publicação</h1>
+        <h1>{% if form.instance.pk %}Editar{% else %}Criar{% endif %} Endereço</h1>
         <form method="post" enctype="multipart/form-data">
             {% if form.instance.pk and form.instance.foto_video %}
                  <a href="{{ form.instance.foto_video.url }}" target="_blank">Visualizar Foto/Vídeo Atual</a>

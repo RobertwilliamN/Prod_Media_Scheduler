@@ -78,7 +78,7 @@
     {% for localizacao in enderecos %}
     <div class="map-container">
         <h2>Mapa da Cidade: {{ localizacao.cidade }}</h2>
-        <iframe src="http://localhost:8000/webservice/mapa/{{ localizacao.cidade|slugify }}"
+        <iframe src="https://app.ketzim.com/webservice/mapa/{{ localizacao.cidade|slugify }}"
             title="Mapa da {{ localizacao.cidade }}"></iframe>
     </div>
     {% empty %}

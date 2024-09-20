@@ -56,7 +56,6 @@ class MapaListView(ListView):
     model = Localizacao
     template_name = 'list_mapas.html'
     context_object_name = 'enderecos'
-    #success_url = reverse_lazy('list_mapas')
     
 @method_decorator(login_required, name='dispatch')
 class MapaCreateView(CreateView):
@@ -96,8 +95,8 @@ class MapasView(TemplateView):
         context = super().get_context_data(**kwargs)
         # Buscando cidades distintas
         context['enderecos'] = Localizacao.objects.values('cidade').distinct()
-        
         return context
+
 
 def get_instagram_info(request, perfil_nome):
     try:
@@ -147,16 +146,18 @@ def get_instagram_info(request, perfil_nome):
         # Qualquer outro erro inesperado
         return JsonResponse({'error': str(e)}, status=500)
 
-    
+
 def get_mapa(request, cidade):
     # Atualiza as coordenadas das localizações
     #atualizar_coordenadas()
 
-   
     # Busca as localizações filtradas pelo estado
     localizacoes = Localizacao.objects.filter(cidade=cidade.upper())  # Filtra pelo estado
-    
+    # localizacoes = Localizacao.objects.filter(cidade__iexact=cidade.upper())
     # Adicionando um print para verificar as localizações
+
+    print(localizacoes)
+
     for loc in localizacoes:
         print(f"Endereço: {loc.endereco}, Latitude: {loc.latitude}, Longitude: {loc.longitude}")
         
