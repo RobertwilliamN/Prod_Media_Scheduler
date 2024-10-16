@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapas</title>
+    <link rel="stylesheet" href="{% static 'css/lista_perfil.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{% static 'images/icon.png'' %}" type="image/icon.png'">
+
+</head>
+
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="/publicacao/list">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+            </a>
+        </div>
+        <ul>
+        
+            <li><a href="/perfil/list">Perfis</a>
+                <ul>
+                    <li><a href="/perfil/create">Criar</a></li>
+                </ul>
+            </li>
+            <li><a href="/publicacao/list">Publicações</a>
+                <ul>
+                    <li class="menu-criar"><a href="/publicacao/create">Criar</a></li>
+                </ul>
+            </li>
+            <li><a href="/publicacao/list">Usuário</a>
+                <ul>
+                    <li><a href="/user/cadastro">Criar</a></li>
+                    <li><a href="/user/password_change">Editar</a></li>
+                    <li><a href="/user/delete">Apagar</a></li>
+                </ul>
+            </li>
+            <li>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>Endereços</h1>
+    <nav class="nav-button">
+        <ul>
+            <li><a href="/webservice/mapa/create" class="button-create"><i class="fas fa-edit"></i> Adicionar novo endereço</a>
+            </li>
+            <li><a href="/webservice/mapas" class="button-create"><i class="fas fa-map"></i> Visualizar Mapas</a>
+            </li>
+        </ul>
+        
+    </nav>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">ID <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(1)">Endereço <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(2)">Bairro <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(3)">Cidade <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(4)">Estado <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(4)">Latitude <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(4)">Longitude <i class="fas fa-sort-down"></i></th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for localizacao in enderecos %}
+                <tr data-url="{% url 'edit_mapa' localizacao.pk %}"
+                    onclick="window.location.href=this.dataset.url;">
+                    <td>{{ localizacao.id }}</td>
+                    <td>{{ localizacao.endereco }}</td>
+                    <td>{{ localizacao.bairro }}</td>
+                    <td>{{ localizacao.cidade }}</td>
+                    <td>{{ localizacao.estado }}</td>
+                    <td>{{ localizacao.latitude }}</td>
+                    <td>{{ localizacao.longitude }}</td>
+                    <td>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'delete_mapa' localizacao.pk %}" class="apagar-publi" onclick="event.stopPropagation();">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="{% static 'js/sort_tables.js' %}"></script>
+</body>
+
+</html>

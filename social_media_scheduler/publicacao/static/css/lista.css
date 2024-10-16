@@ -1,0 +1,383 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #111827;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+h1 {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 40px;
+    color: white;
+}
+
+.table-container {
+    margin-top: 30px;
+    background-color: #1F2937;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: right;
+    color: white;
+}
+
+.button-create {
+   box-shadow: 0px 0px 5px #007bff; 
+   border: none;
+   text-transform: uppercase;
+   background-color: #007bff;
+   font-weight: bold;
+}
+
+.button-create:hover {
+    background-color: #0F63C1;
+    text-decoration: none;
+}
+
+form button {
+    color: white;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 18px 18px;
+    border: none;
+    transition: background-color 0.4s ease, border-radius 0.4s ease;
+}
+
+form button:hover {
+    background-color: #0F63C1;
+}
+
+.apagar-publi {
+       margin-top: 20px;
+    background-color: #FF5758;
+    padding: 13px;
+    height: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px #FF5758;
+    color: black;
+    /* Cor do texto preta */
+    text-decoration: none;
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.apagar-publi i {
+    font-size: 15px; /* Tamanho do ícone */
+}
+
+.apagar-publi:hover {
+    color: darkred; /* Cor do texto e ícone ao passar o mouse */
+}
+
+.table-container .apagar-publi {
+    margin-top: 20px;
+    background-color: #FF5758;
+    padding: 13px;
+    height: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px #FF5758;
+    color: black;
+    /* Cor do texto preta */
+    text-decoration: none;
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+    /* Transição suave */
+}
+
+.table-container .apagar-publi:hover {
+    background-color: #c82333;
+    box-shadow: 0px 0px 10px #c82333;
+    color: white;
+    text-decoration: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+    text-align: center;
+}
+
+th,
+td {
+    padding: 25px; /* Ajuste o padding conforme necessário */
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-weight: bold;
+    max-width: 120px;
+}
+
+.post_id {
+    max-width: 120px; /* Ajuste para um valor mais razoável */
+    word-wrap: break-word; /* Quebra o texto para caber dentro da célula */
+    overflow: hidden; /* Esconde o conteúdo que ultrapassar o limite */
+    text-overflow: ellipsis; 
+}
+
+th i {
+    vertical-align: middle;
+    margin-left: 2px;
+    line-height: 1;
+    position: relative;
+}
+
+th {
+    background-color: #374151;
+    color: white;
+    font-size: 20px;
+}
+
+tr:nth-child(even) {
+    background-color: #111827; /* Cor clara para linhas pares */
+}
+
+tr:nth-child(odd) {
+    background-color: #1F2937; /* Cor padrão para linhas ímpares */
+}
+
+tr:hover {
+    background-color: #4B5563;
+    color: white;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+nav {
+    background-color: #1F2937;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    margin-left: 150px;
+}
+
+.nav-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o texto e o ícone */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 15px; /* Tamanho do texto */
+}
+
+.logout-button i {
+    font-size: 15px; /* Tamanho do ícone */
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+}
+
+.logout-button span {
+    display: inline;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+}
+
+nav ul li {
+    position: relative;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: block;
+    /* Garante que o link ocupe todo o espaço do item do menu */
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+nav ul li a:hover {
+    background-color: #0F63C1;
+    box-shadow: 0px 0px 5px #007bff;
+    text-decoration: none;
+    color: white;
+
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    padding: 0;
+    border-radius: 10px;
+    list-style-type: none;
+    background-color: transparent;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: max-content;
+}
+
+nav ul li:hover ul {
+    display: block;
+    text-decoration: none;
+}
+
+nav ul li ul li {
+    margin: 0;
+    margin-top: 2px;
+}
+
+nav ul li ul li a {
+    padding: 10px 16px;
+    display: block;
+    margin-top: 3px;
+    white-space: nowrap;
+    background-color: #007bff;
+    /* Impede que o texto quebre em várias linhas */
+}
+
+nav ul li ul li a:hover {
+    background-color: #0F63C1;
+}
+
+/* Filtro
+
+/* Estilizando o contêiner dos filtros */
+.container-forms {
+    display: flex;           
+    justify-content: center;
+    align-items: center;    
+    padding: 0;
+    margin: 0;
+}
+
+.filters { 
+    background-color: #374151;
+    padding: 25px;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    margin: 15px; /* Espaço abaixo do formulário */
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-top: 50px;
+}
+
+.filters form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px; 
+}
+
+h2 {
+    margin: 0;
+    text-align: center;
+    padding: 5px;font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Estilizando os rótulos dos campos */
+.filters label {
+    font-weight: bold;
+    margin-right: 10px; /* Espaço à direita dos rótulos */
+}
+
+/* Estilizando os campos de seleção e entradas de data */
+.filters select,
+.filters input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ddd; /* Borda clara */
+    border-radius: 4px; /* Bordas arredondadas */
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Estilizando o botão de filtro */
+.filters button {
+    background-color: #0CA3C9;
+    color: black;
+    border: none;
+    padding: 15px;
+    height: 45px;
+    text-align: center;
+    background: linear-gradient(0deg, rgba(20, 167, 62, 1) 0%, rgba(102, 247, 113, 1) 100%);
+    box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-left: 20px;
+    border-radius: 8px; /* Bordas arredondadas */
+    cursor: pointer; /* Cursor de mão ao passar sobre o botão */
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.filters button:hover {
+    background: linear-gradient(0deg, rgba(15, 120, 45, 1) 0%, rgba(82, 197, 90, 1) 100%);
+    box-shadow: 0 0.7em 1.5em -0.5em rgba(15, 120, 45, 1) 0%, rgba(82, 197, 90, 1) 100%;
+    color: white;
+    text-decoration: none;
+}
+
+
+.pagination {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 25px;
+}
+
+.pagination .current {
+    margin: 0 5px;
+    font-weight: bold;
+}
+
+
+
+
+/* Descontinuado
+.table-container .editar-publi {
+    margin-top: 20px;
+    background: linear-gradient(0deg, rgba(20, 167, 62, 1) 0%, rgba(102, 247, 113, 1) 100%);
+    padding: 15px;
+    height: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0.7em 1.5em -0.5em #14a73e98;
+    color: black;
+    text-decoration: none;
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.editar-publi:hover {
+    background: linear-gradient(0deg, rgba(15, 120, 45, 1) 0%, rgba(82, 197, 90, 1) 100%);
+    box-shadow: 0 0.7em 1.5em -0.5em rgba(15, 120, 45, 1) 0%, rgba(82, 197, 90, 1) 100%;
+    text-decoration: none;
+    color: white;
+    text-decoration: none;
+}
+

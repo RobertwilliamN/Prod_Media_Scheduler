@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfis</title>
+    <link rel="stylesheet" href="{% static 'css/lista_perfil.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{% static 'images/icon.png'' %}" type="image/icon.png'">
+
+</head>
+
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="/publicacao/list">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+            </a>
+        </div>
+        <ul>
+            <li><a href="/perfil/create" class="button-create"><i class="fas fa-edit"></i> Criar novo Perfil</a></li>
+            <li><a href="/publicacao/list">Publicações</a>
+                <ul>
+                    <li class="menu-criar"><a href="/publicacao/create">Criar</a></li>
+                </ul>
+            </li>
+            <li><a href="/webservice/mapa">Mapa</a>
+                <ul>
+                    <li><a href="/perfil/create">Criar</a></li>
+                </ul>
+            </li>
+            <li><a href="/publicacao/list">Usuário</a>
+                <ul>
+                    <li><a href="/user/cadastro">Criar</a></li>
+                    <li><a href="/user/password_change">Editar</a></li>
+                    <li><a href="/user/delete">Apagar</a></li>
+                </ul>
+            </li>
+            <li>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+
+    <h1>Perfis</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0)">ID <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(1)">Nome <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(2)">Page ID <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(3)">App ID <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(4)">Rede Social <i class="fas fa-sort-down"></i></th>
+                    <th onclick="sortTable(5)">País <i class="fas fa-sort-down"></i></th>
+                    <th>Total Publicações no Baú</th> <!-- Nova coluna -->
+                    <th>Postagens do Baú Feitas</th> <!-- Nova coluna -->
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for perfil in perfis %}
+                <tr data-url="{% url 'editar-perfil' perfil.pk %}" onclick="window.location.href=this.dataset.url;">
+                    <td>{{ perfil.id }}</td>
+                    <td>{{ perfil.nome }}</td>
+                    <td>{{ perfil.page_id }}</td>
+                    <td>{{ perfil.app_id }}</td>
+                    <td>{{ perfil.rede_social }}</td>
+                    <td>{{ perfil.pais }}</td>
+                    <td>{{ perfil.publicacoes_no_bau }}</td> <!-- Exibe total de publicações no Bau -->
+                    <td>{{ perfil.postagens_feitas }}</td> <!-- Exibe postagens feitas -->
+                    <td>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'apagar-perfil' perfil.pk %}" class="apagar-publi"
+                            onclick="event.stopPropagation();">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="{% static 'js/sort_tables.js' %}"></script>
+</body>
+
+</html>

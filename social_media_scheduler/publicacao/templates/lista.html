@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Publicações</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/lista.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{% static 'images/icon.png'' %}" type="image/icon.png'">
+
+   
+</head>
+
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="/publicacao/list">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+            </a>
+        </div>
+        <ul>
+            <li>
+                <a href="/publicacao/create" class="button-create">
+                    <i class="fas fa-edit"></i> Criar nova Publicação
+                </a>
+            </li>
+            <li><a href="/banco/publicacao/list">Banco de Publicação</a></li>
+            <li><a href="/perfil/list">Perfil</a>
+                <ul>
+                    <li><a href="/perfil/create">Criar</a></li>
+                </ul>
+            </li>
+            <li><a href="/webservice/mapa/list/enderecos">Mapa</a>
+                <ul>
+                    <li><a href="/webservice/mapa/create">Criar</a></li>
+                </ul>
+            </li>
+            <li><a href="/publicacao/list">Usuário</a>
+                <ul>
+                    <li><a href="/user/cadastro">Criar</a></li>
+                    <li><a href="/user/password_change">Alterar</a></li>
+                    <li><a href="/user/delete">Apagar</a></li>
+                </ul>
+            </li>
+            <li>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="container-forms">
+            <div class="filters">
+                <h2>Filtros</h2>
+                <form id="filters-form" method="get" action="/publicacao/list">
+                    {{ form.as_p }}
+                    <button type="submit">Filtrar</button>
+                </form>
+            </div>
+        </div>
+        <h1>Publicações</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">ID <i class="fas fa-sort-down"></i></th>
+                        <th onclick="sortTable(1)">País <i class="fas fa-sort-down"></i></th>
+                        <th onclick="sortTable(2)">Data Agendada</th>
+                        <th>Foto/Vídeo</th>
+                        <th onclick="sortTable(3)">Perfil Vinculado <i class="fas fa-sort-down"></i></th>
+                        <th onclick="sortTable(4)">Status <i class="fas fa-sort-down"></i></th>
+                        <th onclick="sortTable(2)">Post ID <i class="fas fa-sort-down"></i></th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for publicacao in publicacoes %}
+                    <tr data-url="{% url 'edit-publicacao' publicacao.pk %}"
+                        onclick="window.location.href=this.dataset.url;">
+                        <td>{{ publicacao.id }}</td>
+                        <td>
+                            {% if publicacao.paises_unicos %}
+                                {{ publicacao.paises_unicos|join:", " }}
+                            {% else %}
+                                <span>Sem País vinculado</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ publicacao.data_agendada }}</td>
+                        <td>
+                            {% if publicacao.foto_video %}
+                            <a href="/media/{{ publicacao.foto_video }}" target="_blank"
+                                onclick="event.stopPropagation();">Visualizar</a>
+                            {% else %}
+                            <span>Nenhuma Imagem</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if publicacao.perfil.exists %}
+                                {% for perfil in publicacao.perfil.all|slice:":5" %}
+                                    {{ perfil.nome }}{% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                                {% if publicacao.perfil.count > 5 %}
+                                    ... <!-- Adiciona "..." se houver mais de 10 perfis -->
+                                {% endif %}
+                            {% else %}
+                                <span>Sem perfis vinculados</span>
+                            {% endif %}
+                        </td>
+                        <td {% if publicacao.status == 'Agendado' %} style="color: orange; font-weight: bold; font-family: 'Arial', sans-serif; text-transform: uppercase;"
+                            {% elif publicacao.status == 'Postado' %}
+                            style="color: #91F935; font-weight: bold; font-family: 'Arial', sans-serif; text-transform: uppercase;"  {% elif publicacao.status == 'Post Error' %}
+                            style="color: red; font-weight: bold; font-family: 'Arial', sans-serif; text-transform: uppercase;"{% else %} style="color: white;" {% endif %}>
+                            {{ publicacao.status }}
+                        </td>
+                        <td class="post_id">
+                            {% if publicacao.post_id and publicacao.status == 'Postado' %}
+                                {% if publicacao.post_id|length > 90 %}
+                                    {{ publicacao.post_id|slice:":90" }}...
+                                {% else %}
+                                    {{ publicacao.post_id }}
+                                {% endif %}
+                            {% else %}
+                                <!-- Não exibe nada -->
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'delete-publicacao' publicacao.pk %}" class="apagar-publi" onclick="event.stopPropagation();">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="pagination">
+                <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">&laquo; primeira</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+                    {% endif %}
+
+                    <span class="current">
+                        Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                    </span>
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">próxima</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">última &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/tabela.js' %}"></script>
+    
+</body>
+
+</html>

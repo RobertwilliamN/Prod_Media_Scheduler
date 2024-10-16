@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>Banco de Publicações</title>
+    <link rel="stylesheet" href="{% static 'css/lista.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
+</head>
+
+<body>
+    <nav>
+        <div class="nav-logo">
+            <a href="/publicacao/list">
+                <img src="{% static 'images/logo.jpg' %}" alt="Logo">
+            </a>
+        </div>
+        <ul>
+            <li>
+                <a href="/banco/create" class="button-create">
+                    <i class="fas fa-edit"></i> Criar nova Publicação
+                </a>
+            </li>
+            <li><a href="/publicacao/list/">Publicações</a>
+            </li>
+            <li><a href="/perfil/list">Perfil</a>
+                <ul>
+                    <li><a href="/perfil/create">Criar</a></li>
+                </ul>
+            </li>
+            <li><a href="/webservice/mapa/list">Mapa</a>
+                <ul>
+                    <li><a href="/webservice/mapa/create">Criar</a></li>
+                </ul>
+            </li>
+            <li><a href="/publicacao/list">Usuário</a>
+                <ul>
+                    <li><a href="/user/cadastro">Criar</a></li>
+                    <li><a href="/user/password_change">Alterar</a></li>
+                    <li><a href="/user/delete">Apagar</a></li>
+                </ul>
+            </li>
+            <li>
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="logout-button">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Sair</span>
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        
+        <h1>Banco de Publicações</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">ID <i class="fas fa-sort-down"></i></th>
+                        <th>Foto/Vídeo</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for publicacao in publicacoes %}
+                    <tr data-url="{% url 'edit-publicacao_banco' publicacao.pk %}"
+                        onclick="window.location.href=this.dataset.url;">
+                        <td>{{ publicacao.id }}</td>
+                        <td>
+                            {% if publicacao.foto_video %}
+                            <a href="/media/{{ publicacao.foto_video }}" target="_blank"
+                                onclick="event.stopPropagation();">Visualizar</a>
+                            {% else %}
+                            <span>Nenhuma Imagem</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'delete-publicacao_banco' publicacao.pk %}" class="apagar-publi" onclick="event.stopPropagation();">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{% static 'js/tabela.js' %}"></script>
+    
+</body>
+
+</html>

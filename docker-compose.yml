@@ -1,0 +1,62 @@
+version: '3.1'
+
+services:
+  web:
+    build: .
+    volumes:
+      - .:/app
+      - static_data:/app/social_media_scheduler/static  # Volume para arquivos estáticos
+      - media_data:/app/social_media_scheduler/media
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    depends_on:
+      - db  
+    networks:
+      - social-media-scheduler_default
+
+  db:
+    image: postgres:16
+    container_name: mediascheduler_db
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"
+    networks:
+      - social-media-scheduler_default
+  nginx:
+    image: nginx:latest  # Use a imagem oficial do Nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf  # Ajuste o caminho para o arquivo de configuração
+      - static_data:/app/social_media_scheduler/static  # Volume para arquivos estáticos
+      - media_data:/app/social_media_scheduler/media
+      - /var/www/certbot:/var/www/certbot    # Para os desafios HTTP do Certbot
+      - /etc/letsencrypt:/etc/letsencrypt  # Mapeando o diretório de renewal
+    ports:
+      - "80:80"  # Mapeia a porta 80 do host para a porta 80 do contêiner
+      - "443:443" # Mapeando porta 443 para HTTPS
+    networks:
+      - social-media-scheduler_default  # Conecte à rede existente
+
+        #certbot:
+    #image: certbot/certbot
+       #volumes:
+       #- certbot-etc:/etc/letsencrypt
+         #- certbot-www:/var/www/certbot
+         #entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+       #networks:
+    #     - social-media-scheduler_default
+
+
+networks:
+  social-media-scheduler_default:
+
+volumes:
+  db_data: 
+  static_data:  # Volume para arquivos estáticos
+  media_data:

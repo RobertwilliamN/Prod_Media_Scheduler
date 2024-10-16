@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <!-- Importando CSS -->
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="icon" href="{% static 'images/icon.png'' %}" type="image/icon.png'">
+    <style>
+        
+    </style>
+</head>
+<body >
+    <div class="container">
+        <img src="{% static 'images/logo.jpg' %}" alt="Logo"  class="logo">
+        <form class="input-button"  method="post"> {% csrf_token %}
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Entrar</button>
+        </form>
+            <div class="error">
+                    <p>{{ error }}</p>
+            </div>
+    </div>
+
+</body>
+</html>
+

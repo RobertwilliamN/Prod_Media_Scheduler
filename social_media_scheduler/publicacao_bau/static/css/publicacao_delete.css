@@ -1,0 +1,253 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #111827;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+    overflow-x: auto;
+}
+
+h1 {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 40px;
+}
+
+.table-container {
+    margin-top: 30px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: right;
+
+}
+
+.button-create {
+    background-color: #0CA3C9;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.button-create:hover{
+    background-color: #007bff;
+    text-decoration: none;
+}
+
+.table-container .apagar-publi {
+    margin-top: 20px;
+    background-color: #FF5758;
+    padding: 15px;
+    height: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: black; /* Cor do texto preta */
+    text-decoration: none;
+    transition: background-color 0.4s ease, color 0.4s ease; /* Transição suave */
+}
+
+
+
+.editar-publi:hover {
+    background: linear-gradient(0deg, rgba(15,120,45,1) 0%, rgba(82,197,90,1) 100%);
+    text-decoration: none;
+    color: white;
+    text-decoration: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    text-align: center;
+}
+
+th, td {
+    padding: 30px;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+nav {
+    background-color: #1F2937;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    margin-left: 150px;
+}
+
+.nav-logo img {
+    max-height: 60px;
+    width: auto;
+}
+
+.logout-button {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o texto e o ícone */
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-size: 15px; /* Tamanho do texto */
+}
+
+.logout-button i {
+    font-size: 15px; /* Tamanho do ícone */
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+    
+}
+
+
+.logout-button span {
+    display: inline;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-right: 100px;
+}
+
+nav ul li {
+    position: relative;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 14px 16px;
+    display: block;
+    /* Garante que o link ocupe todo o espaço do item do menu */
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+nav ul li a:hover {
+    background-color: #0F63C1;
+    box-shadow: 0px 0px 5px #007bff;
+    text-decoration: none;
+    color: white;
+
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    padding: 0;
+    border-radius: 10px;
+    list-style-type: none;
+    background-color: transparent;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    width: max-content;
+}
+
+nav ul li:hover ul {
+    display: block;
+    text-decoration: none;
+}
+
+nav ul li ul li {
+    margin: 0;
+    margin-top: 2px;
+}
+
+nav ul li ul li a {
+    padding: 10px 16px;
+    display: block;
+    margin-top: 3px;
+    white-space: nowrap;
+    background-color: #007bff;
+    /* Impede que o texto quebre em várias linhas */
+}
+
+nav ul li ul li a:hover {
+    background-color: #0F63C1;
+}
+
+.container {
+    background-color: #1f2937;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 20px 30px 50px rgba(0, 0, 0, 1);
+    width: 450px;
+    height: 350px;
+    border: 2px solid #1f2937;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+p{
+    text-align: center;
+    color: white; 
+    font-size: 18px;
+}
+
+h1 {
+    color: white;
+    margin-top: 30px;
+}
+
+form a {
+    padding: 4px;
+    font-size: 20px;
+}
+
+
+button {
+    background-color: #e73838;
+    color: White;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    padding: 12px;
+    border-radius: 4px;
+    border: 2px solid #e73838;
+    box-shadow: 0 0 10px #e73838;
+    display: block;
+    width: 95%;
+}
+
+form button:hover {
+    background-color: #e85353;
+    box-shadow: 0 0 10px #e73838;
+    
+}
+
